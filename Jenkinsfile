@@ -8,3 +8,4 @@ node {
       // **       in the global configuration.           
       mvnHome = tool 'Maven'
    }
+}

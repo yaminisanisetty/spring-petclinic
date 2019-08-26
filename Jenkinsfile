@@ -1,14 +1,12 @@
 node {
+try{
    def mvnHome
-   stage('Preparation') { // for display purposes
-      // Get some code from a GitHub repository
-       git 'https://github.com/yaminisanisetty/spring-petclinic.git' 
-      // Get the Maven tool.
-      // ** NOTE: This 'mvn' Maven tool must be configured
-      // **       in the global configuration.           
-      mvnHome = tool 'Maven'
+   def server =Artifactory.server 'artifactory'
+   stage('Preparation') {
+      git 'https://github.com/anoop600/CarApplication-1.git'
+      mvnHome = tool 'MAVEN'
    }
-   stage('Quality Analysis') {
+    stage('Quality Analysis') {
         withSonarQubeEnv('sonarqube') {
         sh 'mvn clean package sonar:sonar'
         }
@@ -41,11 +39,15 @@ node {
         server.upload(uploadSpec) 
     } 
     }
-    catch(err) {
-        stage('MAIL') {
+    catch(err){
+        stage('MAIL'){
         
-        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'yaminisanisetty@gmail.com' 
+        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'anoop.jain10@gmail.com'
+        
         
     }
     }
 }
+  
+
+

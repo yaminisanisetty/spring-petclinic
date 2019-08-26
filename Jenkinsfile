@@ -24,7 +24,7 @@ node {
     
 } 
    stage('Pull and Run using docker compose ')
-        docker-compose up
+        sh "sudo docker-compose up"
   
     }
 

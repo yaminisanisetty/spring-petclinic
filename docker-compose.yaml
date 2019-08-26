@@ -4,5 +4,5 @@ services:
   network1:
    image:"yaminisanisetty/petclinic:${version}"
     ports:
-    - '30080:80'
+    - '8081:8000'
 

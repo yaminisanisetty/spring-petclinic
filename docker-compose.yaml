@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  network1:
+   image:"yaminisanisetty/petclinic:${version}"
+    ports:
+    - '30080:80'
+

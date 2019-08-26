@@ -1,5 +1,5 @@
 node {
-try{
+
    def mvnHome
    def server =Artifactory.server 'artifactory'
    stage('Preparation') {
@@ -40,7 +40,7 @@ try{
     } 
     }
 
-}
+
   
 
 

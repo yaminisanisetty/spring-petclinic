@@ -20,7 +20,7 @@ node {
    stage('Build and Push Spring Petclinic Docker Image') {
         // "sudo cp $WORKSPACE/target/*.jar $WORKSPACE/spring-petclinic.jar"
         sh "sudo docker build -t petclinic:${version} ."
-        sh "sudo docker push yaminisanisetty/petclinic:version"
+        sh "sudo docker push yaminisanisetty/petclinic:${version}"
     
 }
   

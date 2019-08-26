@@ -8,25 +8,45 @@ node {
       // **       in the global configuration.           
       mvnHome = tool 'Maven'
    }
- 
-   stage('Sonar scan execution') {
-            // Run the sonar scan
-           
-                    //def mvnHome = tool 'mvn'
-                    withSonarQubeEnv {
-
-                        sh "'${mvnHome}/bin/mvn'  verify sonar:sonar -Dintegration-tests.skip=true -Dmaven.test.failure.ignore=true"
+   stage('Quality Analysis') {
+        withSonarQubeEnv('sonarqube') {
+        sh 'mvn clean package sonar:sonar'
+        }
+    }
+    
+    stage("Quality Gate"){
+        timeout(time: 1, unit: 'HOURS') { 
+            def qg = waitForQualityGate() 
+            if (qg.status != 'OK') {
+                currentBuild.status='FAILURE'
+                error "Pipeline aborted due to quality gate failure: ${qg.status}"
             }
         }
-   //sonar
-   stage('Build') {
-      // Run the maven build
-      withEnv(["MVN_HOME=$mvnHome"]) {
-         if (isUnix()) {
-            sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
-         } else {
-            bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
-         }
-      }
-   }
+    }
+   
+    stage('Build') {
+        sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"    
+    }
+    
+    stage('Results') {
+     junit '*target/surefire-reports/TEST-*.xml'
+      archive 'target/*.war'
+    }
+   
+    stage('Artifactory upload') { 
+        def uploadSpec = """ 
+        {  
+		"files": [ { "pattern": "/var/lib/jenkins/workspace/StageOne/target/*.war", "target": "car-info" } ]  
+        }"""  
+        server.upload(uploadSpec) 
+    } 
+    }
+    catch(err){
+        stage('MAIL'){
+        
+        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'anoop.jain10@gmail.com'
+        
+        
+    }
+    }
 }

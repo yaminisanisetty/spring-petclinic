@@ -7,7 +7,7 @@ node {
       mvnHome = tool 'MAVEN'
    }
     stage('Quality Analysis') {
-        withSonarQubeEnv('sonarqube') {
+        withSonarQubeEnv('sonar') {
         sh 'mvn clean package sonar:sonar'
         }
     }
@@ -26,18 +26,7 @@ node {
         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"    
     }
     
-    stage('Results') {
-     junit '*target/surefire-reports/TEST-*.xml'
-      archive 'target/*.war'
-    }
-   
-    stage('Artifactory upload') { 
-        def uploadSpec = """ 
-        {  
-		"files": [ { "pattern": "/var/lib/jenkins/workspace/StageOne/target/*.war", "target": "car-info" } ]  
-        }"""  
-        server.upload(uploadSpec) 
-    } 
+  
     }
 
 

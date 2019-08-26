@@ -25,7 +25,7 @@ node {
 } 
    stage('Pull and Run using docker compose '){
         sh "sudo docker-compose up"
-        sh "docker pull yaminisanisetty/petclinic:${version}"
+        sh "sudo docker pull yaminisanisetty/petclinic:${version}"
       
       
    }

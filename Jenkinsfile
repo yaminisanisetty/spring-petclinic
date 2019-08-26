@@ -41,11 +41,10 @@ node {
         server.upload(uploadSpec) 
     } 
     }
-    catch(err){
-        stage('MAIL'){
+    catch(err) {
+        stage('MAIL') {
         
-        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'anoop.jain10@gmail.com'
-        
+        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'anoop.jain10@gmail.com' 
         
     }
     }

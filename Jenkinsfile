@@ -1,7 +1,7 @@
 node {
 
    def mvnHome
-   def server =Artifactory.server 'artifactory'
+   #def server =Artifactory.server 'artifactory'
    stage('Preparation') {
       git 'https://github.com/yaminisanisetty/spring-petclinic.git' 
       mvnHome = tool 'MAVEN'

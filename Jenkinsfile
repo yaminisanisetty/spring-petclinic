@@ -39,14 +39,7 @@ try{
         server.upload(uploadSpec) 
     } 
     }
-#    catch(err){
-#        stage('MAIL'){
-#        
-#        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'lakshmiyamini.sanisetty@mindtree.com'
-#        
-#        
-#    }
-#    }
+
 }
   
 

@@ -3,7 +3,7 @@ try{
    def mvnHome
    def server =Artifactory.server 'artifactory'
    stage('Preparation') {
-      git 'https://github.com/anoop600/CarApplication-1.git'
+      git 'https://github.com/yaminisanisetty/spring-petclinic.git' 
       mvnHome = tool 'MAVEN'
    }
     stage('Quality Analysis') {
@@ -42,7 +42,7 @@ try{
     catch(err){
         stage('MAIL'){
         
-        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'anoop.jain10@gmail.com'
+        mail bcc: '', body: 'Build Failed', cc: '', from: '', replyTo: '', subject: 'Build Failed', to: 'lakshmiyamini.sanisetty@mindtree.com'
         
         
     }

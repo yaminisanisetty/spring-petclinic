@@ -3,5 +3,5 @@ services:
   network1:
     image: yaminisanisetty/petclinic:v1
     ports:
-      - "8081:8000"
+      - "8081:8080"
 

@@ -1,0 +1,10 @@
+---
+- hosts: qa
+  sudo: yes
+
+  tasks:
+    - name: Pull docker image
+      shell: docker pull yaminisanisetty/petclinic:{{version}}
+
+    - name: Run docker container
+      shell: docker run -itd -p 8080:8080 --name petclinic yaminisanisetty/petclinic:{{version}}

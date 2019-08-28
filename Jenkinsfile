@@ -22,8 +22,8 @@ node {
     
 } 
    stage('Pull and Run using docker compose '){
-        sh "sudo docker-compose -f docker-compose1.yaml up"
-        //sh "sudo docker-compose -f docker-compose1.yaml u -d --build"
+        //sh "sudo docker-compose -f docker-compose1.yaml up"
+        sh "sudo docker-compose -f docker-compose1.yaml u -d --build"
    }
    stage('Run ansible playbook') {   
         ansible-playbook -i inventory pet-playbook.yaml -u devopsinfra --extra-vars {{version=$VERSION}}

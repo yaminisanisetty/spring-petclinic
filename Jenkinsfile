@@ -26,7 +26,7 @@ node {
         sh "sudo docker-compose -f docker-compose1.yaml u -d --build"
    }
    stage('Run ansible playbook') {   
-        ansible-playbook -i pet-playbook.yaml -u devopsinfra --extra-vars {{version=$VERSION}}
+        //ansible-playbook -i pet-playbook.yaml -u devopsinfra --extra-vars {{version=$VERSION}}
               
   
     }

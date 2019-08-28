@@ -26,8 +26,8 @@ node {
         //sh "sudo docker-compose -f docker-compose1.yaml u -d --build"
    }
    stage('Run ansible playbook') {   
-         ansible-playbook -i inventory pet-playbook.yaml -u devopsinfra --extra-vars \"version=$VERSION\""
-          // sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"    
+        ansible-playbook -i inventory pet-playbook.yaml -u devopsinfra --extra-vars {{version=$VERSION}}
+              
   
     }
 

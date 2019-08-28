@@ -1,10 +1,10 @@
 ---
-- hosts: qa
+- hosts: all
   sudo: yes
-
   tasks:
-    - name: Pull docker image
-      shell: docker pull yaminisanisetty/petclinic:{{version}}
-
+    - name: Copy the docker file to remote server
+        src: ./Dockerfile
+        dest: /etc/docker
+        
     - name: Run docker container
       shell: docker run -itd -p 8080:8080 --name petclinic yaminisanisetty/petclinic:{{version}}

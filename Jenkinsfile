@@ -11,8 +11,6 @@ node {
         sh 'mvn clean package sonar:sonar'
         }
     }
-    
-   
     stage('Build') {
         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"    
     }
@@ -26,9 +24,10 @@ node {
    stage('Pull and Run using docker compose '){
         sh "sudo docker-compose -f docker-compose1.yaml up"
         //sh "sudo docker-compose -f docker-compose1.yaml u -d --build"
-      
-      
    }
+   stage('Run ansible playbook') {   
+         ansible-playbook -i inventory pet-playbook.yaml --extra-vars \"version=$VERSION\""
+          // sshCommand remote: remote, command: "for i in {1..5}; do echo -n \"Loop \$i \"; date ; sleep 1; done"    
   
     }
 

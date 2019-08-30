@@ -28,7 +28,7 @@ node {
  
    stage('Run ansible playbook') {   
         //ansible-playbook -i pet-playbook.yaml -u devopsinfra --extra-vars {{version=$VERSION}}
-        sh "sudo ansible-playbook annni/playbook.yaml -i /etc/ansible/hosts"
+        sh "sudo ansible-playbook playbook.yaml -i /etc/ansible/hosts"
    }
   
   

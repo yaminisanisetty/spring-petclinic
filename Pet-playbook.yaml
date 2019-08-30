@@ -1,10 +1,12 @@
 ---
+
 - hosts: all
   sudo: yes
   tasks:
-    - name: Copy the docker file to remote server
-        src: ./Dockerfile
-        dest: /etc/docker
-        
-    - name: Run docker container
-      shell: docker run -itd -p 8080:8080 --name petclinic yaminisanisetty/petclinic:{{version}}
+  - name: Copy the docker file to remote server
+    copy:
+      src: ./Dockerfile
+      dest: /etc/docker/Dockerfile
+
+  - name: Run docker container
+    shell: docker run  -itd -p 8080:8080 --name petclinic yaminisanisetty/petclinic:v2.8

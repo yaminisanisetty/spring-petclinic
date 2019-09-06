@@ -1,7 +1,7 @@
 version: '2'
 services:
   network1:
-    image: yaminisanisetty/petclinic:${version1}
+    image: "yaminisanisetty/petclinic:${version1}"
     ports:
       - "8081:8080"
 

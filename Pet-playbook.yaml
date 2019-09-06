@@ -9,4 +9,4 @@
       dest: /etc/docker/Dockerfile
 
   - name: Run docker container
-    shell: docker run  -itd -p 8080:8080 --name petclinic yaminisanisetty/petclinic: latest
+    shell: docker run  -itd -p 8080:8080 --name petclinic yaminisanisetty/petclinic:latest

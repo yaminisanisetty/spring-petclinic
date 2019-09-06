@@ -32,7 +32,7 @@ Or you can run it from Maven directly using the Spring Boot Maven plugin. If you
 Our issue tracker is available here: https://github.com/spring-projects/spring-petclinic/issues
 
 
-## Database configuration
+## Database configuration ..
 
 In its default configuration, Petclinic uses an in-memory database (HSQLDB) which
 gets populated at startup with data. A similar setup is provided for MySql in case a persistent database configuration is needed.

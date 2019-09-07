@@ -29,6 +29,12 @@ node {
    stage('Deploy approval'){
          input "Proceed with deployment?"  
    }
+   
+   stage('send notification') {
+        mail to: 'devops531@gmail.com', from: 'devops531@gmail.com',
+                  subject: "Build: ${env.JOB_NAME} - Success", 
+                  body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}"
+    }
    stage('Run ansible playbook') {   
         //ansible-playbook -i pet-playbook.yaml -u devopsinfra --extra-vars {{version=$VERSION}}
         sh "sudo ansible-playbook Pet-playbook.yaml -i /etc/ansible/hosts"
